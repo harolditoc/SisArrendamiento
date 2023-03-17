@@ -1,0 +1,87 @@
+﻿@model SisArrendamiento.Models.Alquiler
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Alquiler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Codigo" class="control-label"></label>
+                <input asp-for="Codigo" class="form-control" />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AlquilerMensual" class="control-label"></label>
+                <input asp-for="AlquilerMensual" class="form-control" />
+                <span asp-validation-for="AlquilerMensual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Agua" class="control-label"></label>
+                <input asp-for="Agua" class="form-control" />
+                <span asp-validation-for="Agua" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cable" class="control-label"></label>
+                <input asp-for="Cable" class="form-control" />
+                <span asp-validation-for="Cable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaActual" class="control-label"></label>
+                <input asp-for="FechaActual" class="form-control" />
+                <span asp-validation-for="FechaActual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaVencimiento" class="control-label"></label>
+                <input asp-for="FechaVencimiento" class="form-control" />
+                <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PagoTotal" class="control-label"></label>
+                <input asp-for="PagoTotal" class="form-control" />
+                <span asp-validation-for="PagoTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArrendadorCodigo" class="control-label"></label>
+                <select asp-for="ArrendadorCodigo" class ="form-control" asp-items="ViewBag.ArrendadorCodigo"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzCuartoCodigo" class="control-label"></label>
+                <select asp-for="LuzCuartoCodigo" class ="form-control" asp-items="ViewBag.LuzCuartoCodigo"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzBañoCodigo" class="control-label"></label>
+                <select asp-for="LuzBañoCodigo" class ="form-control" asp-items="ViewBag.LuzBañoCodigo"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzEscaleraCodigo" class="control-label"></label>
+                <select asp-for="LuzEscaleraCodigo" class ="form-control" asp-items="ViewBag.LuzEscaleraCodigo"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArrendatarioCodigo" class="control-label"></label>
+                <select asp-for="ArrendatarioCodigo" class ="form-control" asp-items="ViewBag.ArrendatarioCodigo"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CuartoCodigo" class="control-label"></label>
+                <select asp-for="CuartoCodigo" class ="form-control" asp-items="ViewBag.CuartoCodigo"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

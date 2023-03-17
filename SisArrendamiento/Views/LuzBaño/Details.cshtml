@@ -1,0 +1,42 @@
+﻿@model SisArrendamiento.Models.LuzBaño
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>LuzBaño</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AnteriorLuzLectura)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AnteriorLuzLectura)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ActualLuzLectura)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ActualLuzLectura)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KwConsumido)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KwConsumido)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Monto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Monto)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Codigo">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

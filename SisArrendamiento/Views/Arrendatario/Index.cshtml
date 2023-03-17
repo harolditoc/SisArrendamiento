@@ -1,0 +1,66 @@
+﻿@model IEnumerable<SisArrendamiento.Models.Alquiler>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.Apellidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.CedulaIdentidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.FechaIngreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.FechaNacimiento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Nombres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Apellidos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.CedulaIdentidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.FechaIngreso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.FechaNacimiento)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Codigo">Edit</a> |
+                    <a asp-action="ContratoPdf" asp-route-id="@item.Codigo"><img style="height= 40px; width: 40px;" src="https://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Adobe-PDF-Document-icon.png" /></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Codigo">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

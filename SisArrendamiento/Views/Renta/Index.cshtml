@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SisArrendamiento.Models.Alquiler>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Crear">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label>Arrendatario</label>
+            </th>
+            <th>
+                <label>Fecha</label>
+            </th>
+            <th>
+                <label>Pago Total</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Apellidos), @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Nombres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaActual)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PagoTotal)
+                </td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.Codigo"><img style="height: 40px; width: 40px" src="https://iconarchive.com/download/i42608/oxygen-icons.org/oxygen/Actions-document-edit.ico" /></a> |
+                    <a asp-action="Detalles" asp-route-id="@item.Codigo"><img style="height= 40px; width: 40px;" src="https://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Adobe-PDF-Document-icon.png" /></a> |
+                    <a asp-action="Eliminar" asp-route-id="@item.Codigo">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

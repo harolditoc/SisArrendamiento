@@ -1,0 +1,166 @@
+﻿@model SisArrendamiento.Models.Alquiler
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Editar</h1>
+
+<h4>Alquiler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Editar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Codigo" />
+            <input type="hidden" asp-for="LuzCuartoCodigoNavigation.Codigo" />
+            <input type="hidden" asp-for="LuzBañoCodigoNavigation.Codigo" />
+            <input type="hidden" asp-for="LuzEscaleraCodigoNavigation.Codigo" />
+            <div class="form-group">
+                <label asp-for="AlquilerMensual" class="control-label"></label>
+                <input asp-for="AlquilerMensual" class="form-control" />
+                <span asp-validation-for="AlquilerMensual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Agua" class="control-label"></label>
+                <input asp-for="Agua" class="form-control" />
+                <span asp-validation-for="Agua" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cable" class="control-label"></label>
+                <input asp-for="Cable" class="form-control" />
+                <span asp-validation-for="Cable" class="text-danger"></span>
+            </div>
+    @*        <div class="form-group">
+                <label asp-for="FechaActual" class="control-label"></label>
+                <input asp-for="FechaActual" class="form-control" />
+                <span asp-validation-for="FechaActual" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="FechaVencimiento" class="control-label"></label>
+                <input asp-for="FechaVencimiento" class="form-control" />
+                <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="PagoTotal" class="control-label"></label>
+                
+                <input type="text" class="form-control" disabled asp-for="PagoTotal">
+                <span asp-validation-for="PagoTotal" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="LuzCuartoCodigoNavigation.ActualLuzLectura" class="control-label"></label>
+                
+                <input type="text" class="form-control" asp-for="LuzCuartoCodigoNavigation.ActualLuzLectura">
+                <span asp-validation-for="LuzCuartoCodigoNavigation.ActualLuzLectura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzCuartoCodigoNavigation.AnteriorLuzLectura" class="control-label"></label>
+
+                <input type="text" class="form-control" asp-for="LuzCuartoCodigoNavigation.AnteriorLuzLectura">
+                <span asp-validation-for="LuzCuartoCodigoNavigation.AnteriorLuzLectura" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="LuzCuartoCodigoNavigation.KwConsumido" class="control-label"></label>
+
+                <input type="text" class="form-control" asp-for="LuzCuartoCodigoNavigation.KwConsumido">
+                <span asp-validation-for="LuzCuartoCodigoNavigation.KwConsumido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzCuartoCodigoNavigation.Monto" class="control-label"></label>
+                
+                <input type="text" class="form-control" asp-for="LuzCuartoCodigoNavigation.Monto">
+                <span asp-validation-for="LuzCuartoCodigoNavigation.Monto" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="LuzBañoCodigoNavigation.ActualLuzLectura" class="control-label"></label>
+
+                <input type="text" class="form-control" asp-for="LuzBañoCodigoNavigation.ActualLuzLectura">
+                <span asp-validation-for="LuzBañoCodigoNavigation.ActualLuzLectura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzBañoCodigoNavigation.AnteriorLuzLectura" class="control-label"></label>
+
+                <input type="text" class="form-control" asp-for="LuzBañoCodigoNavigation.AnteriorLuzLectura">
+                <span asp-validation-for="LuzBañoCodigoNavigation.AnteriorLuzLectura" class="text-danger"></span>
+            </div>
+        @*    <div class="form-group">
+                <label asp-for="LuzBañoCodigoNavigation.KwConsumido" class="control-label"></label>
+
+                <input type="text" class="form-control" asp-for="LuzBañoCodigoNavigation.KwConsumido">
+                <span asp-validation-for="LuzBañoCodigoNavigation.KwConsumido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzBañoCodigoNavigation.Monto" class="control-label"></label>
+
+                <input type="text" class="form-control" asp-for="LuzBañoCodigoNavigation.Monto">
+                <span asp-validation-for="LuzBañoCodigoNavigation.Monto" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="LuzEscaleraCodigoNavigation.ActualLuzLectura" class="control-label"></label>
+
+                <input type="text" class="form-control" asp-for="LuzEscaleraCodigoNavigation.ActualLuzLectura">
+                <span asp-validation-for="LuzEscaleraCodigoNavigation.ActualLuzLectura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzEscaleraCodigoNavigation.AnteriorLuzLectura" class="control-label"></label>
+
+                <input type="text" class="form-control" asp-for="LuzEscaleraCodigoNavigation.AnteriorLuzLectura">
+                <span asp-validation-for="LuzEscaleraCodigoNavigation.AnteriorLuzLectura" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="LuzEscaleraCodigoNavigation.KwConsumido" class="control-label"></label>
+
+                <input type="text" class="form-control" asp-for="LuzEscaleraCodigoNavigation.KwConsumido">
+                <span asp-validation-for="LuzEscaleraCodigoNavigation.KwConsumido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzEscaleraCodigoNavigation.Monto" class="control-label"></label>
+
+                <input type="text" class="form-control" asp-for="LuzEscaleraCodigoNavigation.Monto">
+                <span asp-validation-for="LuzEscaleraCodigoNavigation.Monto" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group">
+                <label asp-for="ArrendadorCodigo" class="control-label"></label>
+                <select asp-for="ArrendadorCodigo" class="form-control" asp-items="ViewBag.ArrendadorCodigo"></select>
+                <span asp-validation-for="ArrendadorCodigo" class="text-danger"></span>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="LuzCuartoCodigo" class="control-label"></label>
+                <select asp-for="LuzCuartoCodigo" class="form-control" asp-items="ViewBag.LuzCuartoCodigo"></select>
+                <span asp-validation-for="LuzCuartoCodigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzBañoCodigo" class="control-label"></label>
+                <select asp-for="LuzBañoCodigo" class="form-control" asp-items="ViewBag.LuzBañoCodigo"></select>
+                <span asp-validation-for="LuzBañoCodigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzEscaleraCodigo" class="control-label"></label>
+                <select asp-for="LuzEscaleraCodigo" class="form-control" asp-items="ViewBag.LuzEscaleraCodigo"></select>
+                <span asp-validation-for="LuzEscaleraCodigo" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ArrendatarioCodigo" class="control-label"></label>
+                <select asp-for="ArrendatarioCodigo" class="form-control" asp-items="ViewBag.ArrendatarioCodigo"></select>
+                <span asp-validation-for="ArrendatarioCodigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CuartoCodigo" class="control-label"></label>
+                <select asp-for="CuartoCodigo" class="form-control" asp-items="ViewBag.CuartoCodigo"></select>
+                <span asp-validation-for="CuartoCodigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

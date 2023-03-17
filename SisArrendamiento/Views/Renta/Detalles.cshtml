@@ -1,0 +1,169 @@
+﻿@model SisArrendamiento.Models.Alquiler
+
+@{
+    ViewData["Title"] = "Detalles";
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="~/css/detalleRenta.css" type="text/css" />
+</head>
+<body>
+    <div>
+        <h1>@Html.DisplayFor(model => model.ArrendatarioCodigoNavigation.Nombres) @Html.DisplayFor(model => model.ArrendatarioCodigoNavigation.Apellidos)</h1>
+        <p class="subt">CEDULA DE IDENTIDAD:&nbsp;@Html.DisplayFor(model => model.ArrendatarioCodigoNavigation.CedulaIdentidad)&nbsp; CEL.&nbsp;@Html.DisplayFor(model => model.ArrendatarioCodigoNavigation.Telefono)</p>
+        <p class="text1">
+            <span>POR MEDIO DE LA PRESENTE SE LE HACE DE CONOCIMIENTO QUE EL ALQUILER DEL CUARTO SITUADO EN EL PISO&nbsp;</span>
+            <span>@Html.DisplayFor(model => model.CuartoCodigoNavigation.Piso)</span>
+            <span>&nbsp;ZONA&nbsp;</span>
+            <span>@Html.DisplayFor(model => model.CuartoCodigoNavigation.Zona)</span>
+            <span>
+                DEL INMUEBLE UBICADO EN LA CUADRA 26 DE LA AV. 1RO DE MAYO, MZ-&Oacute;, LTE-06 DEL IV PROG. MUNIC. DE VIVIENDA &ndash; EL AGUSTINO,
+                <strong>SE VENCE EL @Model.FechaVencimiento.ToString("dd DE MMMM DEL yyyy"),</strong>
+            </span>
+            <span>Y EL MONTO A PAGAR ES EL SIGUIENTE.</span>
+        </p>
+        <ul>
+            <li>
+                <span>ALQUILER MENSUAL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+                <span>@Html.DisplayFor(model => model.AlquilerMensual)</span>
+            </li>
+            <li>
+                <span>LUZ DE CUARTO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+                <span>@Html.DisplayFor(model => model.LuzCuartoCodigoNavigation.Monto)</span>
+            </li>
+            <li>
+                <span>LUZ DE ESCALERA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</span>
+                <span>@Html.DisplayFor(model => model.LuzEscaleraCodigoNavigation.Monto)</span>
+            </li>
+            <li>
+                <span>
+                    LUZ DE BAÑO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp;
+                </span>
+                <span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.Monto)</span>
+            </li>
+            <li>
+                <span>
+                    AGUA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                </span>
+                <span>@Html.DisplayFor(model => model.Agua)</span>
+            </li>
+            <li>
+                <span>
+                    CABLE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                </span>
+                <span>@Html.DisplayFor(model => model.Cable)</span>
+                <h1 class="text-center" style="text-decoration: underline;">
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                </h1>
+            </li>
+        </ul>
+
+        <span>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; TOTAL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <strong>S/</strong>
+        </span>
+        <strong>
+            <span>@Html.DisplayFor(model => model.PagoTotal)</span>
+        </strong>
+        <p><strong>@Model.ArrendatarioCodigoNavigation.FechaIngreso.ToString("ddMMMyyyy")</strong></p>
+        <p style="text-align: right;">Lima, @Model.FechaActual.ToString("dd DE MMMM DEL yyyy") &nbsp; &nbsp;</p>
+        <br />
+        <br />
+        <br />
+        <p>
+            <h1 style="text-decoration: underline; text-align: right">
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </h1>
+            <u><span>NOTA</span></u>:
+            <span>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                &nbsp; &nbsp;
+            </span><span>@Html.DisplayFor(model => model.ArrendadorCodigoNavigation.Nombres) @Html.DisplayFor(model => model.ArrendadorCodigoNavigation.Apellidos)</span>
+        </p>
+        <p style='margin-top:0cm;margin-right:0cm;margin-bottom:10.0pt;margin-left:0cm;font-family:"Calibri",sans-serif;text-indent:14.2pt;'>
+            <strong>
+                <u>
+                    <span>LUZ DEL CUART0</span>
+                </u>
+            </strong>
+        </p>
+        <ul>
+            <li>
+                <span>LECTURA ANTERIOR DE LUZ : &nbsp;&nbsp;</span>
+                <span>@Html.DisplayFor(model => model.LuzCuartoCodigoNavigation.AnteriorLuzLectura)</span><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;KW</span>
+            </li>
+            <li>
+                <span>LECTURA ACTUAL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp;</span>
+                <span>@Html.DisplayFor(model => model.LuzCuartoCodigoNavigation.ActualLuzLectura)</span><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;KW</span>
+            </li>
+            <li>
+                <span>Kw CONSUMIDOS EN EL MES: &nbsp;&nbsp;</span><span>@Html.DisplayFor(model => model.LuzCuartoCodigoNavigation.KwConsumido)</span>
+                <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;x 1.00 &nbsp; &nbsp;= S/</span><span>@Html.DisplayFor(model => model.LuzCuartoCodigoNavigation.Monto)</span>
+            </li>
+        </ul>
+        <p>
+        </p>
+        <p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:14.2pt;font-family:"Calibri",sans-serif;'>
+            <strong>
+                <u>
+                    <span>LUZ DE LA ESCALERA</span>
+                </u>
+            </strong>
+        </p>
+        <ul>
+            <li>
+                <span>LECTURA ANTERIOR DE LUZ : &nbsp;&nbsp;</span><span>@Html.DisplayFor(model => model.LuzEscaleraCodigoNavigation.AnteriorLuzLectura)</span>
+                <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; KW&nbsp;</span>
+            </li>
+            <li>
+                <span>LECTURA ACTUAL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp;</span><span>@Html.DisplayFor(model => model.LuzEscaleraCodigoNavigation.ActualLuzLectura)</span>
+                <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;KW</span>
+            </li>
+            <li>
+                <span>Kw CONSUMIDOS EN EL MES: &nbsp;&nbsp;</span><span>@Html.DisplayFor(model => model.LuzEscaleraCodigoNavigation.KwConsumido)</span><span>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; x 1.00 &nbsp; =&nbsp;
+                </span><span>@((Model.LuzEscaleraCodigoNavigation.ActualLuzLectura - Model.LuzEscaleraCodigoNavigation.AnteriorLuzLectura))</span>
+                <span>&nbsp; &nbsp;/10 &nbsp; &nbsp; &nbsp; = &nbsp;S/</span><span>@Html.DisplayFor(model => model.LuzEscaleraCodigoNavigation.Monto)</span>
+            </li>
+        </ul>
+        <p>@ViewBag.numluz3</p>
+        <p>@TempData["hola"]</p>
+        <p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:14.2pt;font-family:"Calibri",sans-serif;'>
+            <strong>
+                <u>
+                    <span>LUZ DE BAÑO</span>
+                </u>
+            </strong>
+        </p>
+        <ul>
+            <li>
+                <span>LECTURA ANTERIOR DE LUZ : &nbsp;&nbsp;</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.AnteriorLuzLectura)</span>
+                <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; KW&nbsp;</span>
+            </li>
+            <li>
+                <span>LECTURA ACTUAL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp;</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.ActualLuzLectura)</span>
+                <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;KW</span>
+            </li>
+            <li>
+                <span>Kw CONSUMIDOS EN EL MES: &nbsp;&nbsp;</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.KwConsumido)</span>
+                <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;x 1.00 &nbsp; &nbsp;= S/</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.Monto)</span>
+            </li>
+        </ul>
+        <br />
+        <p>(+) Nota</p>
+        <ul>
+            <li>
+                PASANDO LA FECHA DE VENCIMIENTO DE LA RENTA, SE AUMENTARÁ A SU PAGO TOTAL UNA MORA DE
+                <strong>S/5</strong> POR DÍA. LA MORA ES APLICADA JUNTO A LAS CLÁUSULAS RESPECTIVAS, TAL CUAL ESTÁ ESCRITO EN EL CONTRATO.
+            </li>
+        </ul>
+    </div>
+</body>

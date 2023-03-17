@@ -1,0 +1,40 @@
+﻿body {
+    font-family: Calibri;
+   /* margin: 2.5px 3px 2.5px 3px; *//*superior,derecha,inferior,izquierda*/
+    text-align: justify-all;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0cm;
+    text-align: center;
+    line-height: 200%;
+    font-family: "Calibri",sans-serif;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+div {
+    margin: 80px 70px 80px 70px;
+    line-height: 115%;
+
+}
+
+p {
+    font-size: 20px;
+    line-height: 115%;
+}
+
+.subt {
+    text-align: center;
+    font-family: "Calibri",sans-serif;
+    font-weight: bold;
+    line-height: 200%;
+}
+
+text1 {
+    line-height: 115%;
+    font-family: "Calibri",sans-serif;
+    text-align: justify;
+}

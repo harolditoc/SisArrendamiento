@@ -1,0 +1,101 @@
+﻿@model IEnumerable<SisArrendamiento.Models.Alquiler>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AlquilerMensual)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Agua)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaActual)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaVencimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PagoTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrendadorCodigoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CuartoCodigoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LuzBañoCodigoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LuzCuartoCodigoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LuzEscaleraCodigoNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlquilerMensual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agua)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaActual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaVencimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PagoTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrendadorCodigoNavigation.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CuartoCodigoNavigation.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuzBañoCodigoNavigation.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuzCuartoCodigoNavigation.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LuzEscaleraCodigoNavigation.Codigo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Codigo">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Codigo">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Codigo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
