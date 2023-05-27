@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Rotativa.AspNetCore;
 using SisArrendamiento.Models;
-using SisArrendamiento.ViewModels;
 
 namespace SisArrendamiento.Controllers
 {
@@ -23,8 +22,15 @@ namespace SisArrendamiento.Controllers
         // GET: Arrendatario
         public async Task<IActionResult> Index()
         {
-            var arrendamientoWebContext = _context.Alquilers.Include(a => a.ArrendadorCodigoNavigation).Include(a => a.ArrendatarioCodigoNavigation).Include(a => a.CuartoCodigoNavigation).
-                Include(a => a.LuzBañoCodigoNavigation).Include(a => a.LuzCuartoCodigoNavigation).Include(a => a.LuzEscaleraCodigoNavigation);
+            //var arrendamientoWebContext = _context.Alquilers.Include(a => a.ArrendadorCodigoNavigation).Include(a => a.ArrendatarioCodigoNavigation).Include(a => a.CuartoCodigoNavigation).
+            //    Include(a => a.LuzBañoCodigoNavigation).Include(a => a.LuzCuartoCodigoNavigation).Include(a => a.LuzEscaleraCodigoNavigation);
+            //var arrendamientoWebContext = _context.Arrendatarios.Include(a => a.Alquilers).Include(a => a.Alquilers);
+            var arrendamientoWebContext = _context.Arrendatarios
+        .Include(a => a.Alquilers).ThenInclude(a => a.CuartoCodigoNavigation)
+        .Include(a => a.Alquilers).ThenInclude(a => a.LuzBañoCodigoNavigation)
+        .Include(a => a.Alquilers).ThenInclude(a => a.LuzCuartoCodigoNavigation)
+        .Include(a => a.Alquilers).ThenInclude(a => a.LuzEscaleraCodigoNavigation)
+        .Include(a => a.Convivientes);
             return View(arrendamientoWebContext.ToList());
         }
 
@@ -162,9 +168,46 @@ namespace SisArrendamiento.Controllers
         {
           return _context.Arrendatarios.Any(e => e.Codigo == id);
         }
+        [HttpGet]
+        public IActionResult ContratoPdf(int? id)
+        {
+            //var alquiler = _context.Alquilers
+            //    .Include(a => a.ArrendadorCodigoNavigation) 
+            //    .Include(a => a.CuartoCodigoNavigation)
+            //    .Include(a => a.LuzBañoCodigoNavigation)
+            //    .Include(a => a.LuzCuartoCodigoNavigation)
+            //    .Include(a => a.LuzEscaleraCodigoNavigation)
+            //    .Include(a => a.ArrendatarioCodigoNavigation).ThenInclude(a => a.Convivientes)
+            //    .FirstOrDefault(m => m.Codigo == id);
+            var arrendatario = _context.Arrendatarios
+        .Include(a => a.Alquilers).ThenInclude(a => a.CuartoCodigoNavigation)
+        .Include(a => a.Alquilers).ThenInclude(a => a.LuzBañoCodigoNavigation)
+        .Include(a => a.Alquilers).ThenInclude(a => a.LuzCuartoCodigoNavigation)
+        .Include(a => a.Alquilers).ThenInclude(a => a.LuzEscaleraCodigoNavigation)
+        .Include(a => a.Convivientes)
+        .FirstOrDefault(m => m.Codigo == id);
+            ViewBag.pdf = true;
+
+            return new ViewAsPdf(arrendatario)
+            {
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                PageMargins =
+                {
+                    Top = 20,
+                    Bottom = 20,
+                    Left = 31,
+                    Right = 31,
+                }
+            };
+        }
         //[HttpGet]
         //public IActionResult ContratoPdf(int? id)
         //{
+        //    if (id == null || _context.Alquilers == null)
+        //    {
+        //        return NotFound();
+        //    }
         //    var alquiler = _context.Alquilers
         //        .Include(a => a.ArrendadorCodigoNavigation)
         //        .Include(a => a.ArrendatarioCodigoNavigation)
@@ -173,45 +216,24 @@ namespace SisArrendamiento.Controllers
         //        .Include(a => a.LuzCuartoCodigoNavigation)
         //        .Include(a => a.LuzEscaleraCodigoNavigation)
         //        .FirstOrDefault(m => m.Codigo == id);
-        //    ViewBag.pdf = true;
-        //    return new ViewAsPdf(alquiler)
+        //    var arrendatario = _context.Arrendatarios.FirstOrDefault(a => a.Codigo == id);
+        //    //var convivientes = _context.Convivientes.FirstOrDefault(c => c.Codigo == id);
+        //    var convivientes = _context.Convivientes.Where(c => c.ArrendatarioCodigo == arrendatario.Codigo).ToList();
+        //    var model = new AlquilerVM
         //    {
-        //        PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-        //        PageSize = Rotativa.AspNetCore.Options.Size.A4,
+        //        Alquiler = alquiler,
+        //        Arrendatario = arrendatario,
+        //        //Convivientes = new List<Conviviente> { convivientes }
+        //        Convivientes = convivientes
         //    };
-        //}
-        [HttpGet]
-        public IActionResult ContratoPdf(int? id)
-        {
-            if (id == null || _context.Alquilers == null)
-            {
-                return NotFound();
-            }
-            var alquiler = _context.Alquilers
-                .Include(a => a.ArrendadorCodigoNavigation)
-                .Include(a => a.ArrendatarioCodigoNavigation)
-                .Include(a => a.CuartoCodigoNavigation)
-                .Include(a => a.LuzBañoCodigoNavigation)
-                .Include(a => a.LuzCuartoCodigoNavigation)
-                .Include(a => a.LuzEscaleraCodigoNavigation)
-                .FirstOrDefault(m => m.Codigo == id);
-            var arrendatario = _context.Arrendatarios.FirstOrDefault(a => a.Codigo == id);
-            var convivientes = _context.Convivientes.FirstOrDefault(c => c.Codigo == id);
-
-            var model = new AlquilerVM
-            {
-                Alquiler = alquiler,
-                Arrendatario = arrendatario,
-                Convivientes = new List<Conviviente> { convivientes }
-            };
             
-            if (alquiler == null)
-            {
-                return NotFound();
-            }
-            ViewBag.pdf = true;
-            return View(model);
+        //    if (alquiler == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewBag.pdf = true;
+        //    return View(model);
 
-        }
+        //}
     }
 }

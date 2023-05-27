@@ -1,9 +1,10 @@
 ﻿body {
     font-family: Calibri;
-   /* margin: 2.5px 3px 2.5px 3px; *//*superior,derecha,inferior,izquierda*/
-    text-align: justify-all;
+    /* margin: 2.5px 3px 2.5px 3px; */ /*superior,derecha,inferior,izquierda*/
+    text-align: justify;
     font-size: 20px;
     text-transform: uppercase;
+    text-rendering: geometricPrecision;
 }
 
 h1 {

@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SisArrendamiento.Models;
+    namespace SisArrendamiento.Models;
 
-public partial class LuzBaño
-{
-    public int Codigo { get; set; }
+    public partial class LuzBaño
+    {
+        public int Codigo { get; set; }
 
-    public decimal? AnteriorLuzLectura { get; set; }
+        public decimal? AnteriorLuzLectura { get; set; }
 
-    public decimal? ActualLuzLectura { get; set; }
+        public decimal? ActualLuzLectura { get; set; }
 
-    public decimal? KwConsumido { get; set; }
+        public decimal? KwConsumido { get; set; }
 
-    public decimal? Monto { get; set; }
+        public decimal? Monto { get; set; }
 
-    public virtual ICollection<Alquiler> Alquilers { get; } = new List<Alquiler>();
-}
+        public virtual ICollection<Alquiler> Alquilers { get; } = new List<Alquiler>();
+    }

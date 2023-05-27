@@ -10,17 +10,16 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Crear">
+        <form asp-action="NewMes">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="LuzCuartoCodigoNavigation.Codigo" />
-            <input type="hidden" asp-for="LuzBañoCodigoNavigation.Codigo" />
-            <input type="hidden" asp-for="LuzEscaleraCodigoNavigation.Codigo" />
-            
+            <input type="hidden" asp-for="ArrendadorCodigoNavigation.Codigo" />
+
             <div class="form-group">
                 <label asp-for="ArrendatarioCodigo" class="control-label"></label>
-                <select asp-for="ArrendatarioCodigo" class="form-control" asp-items="ViewBag.ArrendatarioCodigo"></select>
+                <select asp-for="ArrendatarioCodigo" class="form-control" asp-items="ViewBag.ArrendatarioCodigo" readonly></select>
                 <span asp-validation-for="ArrendatarioCodigo" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="AlquilerMensual" class="control-label"></label>
                 <input asp-for="AlquilerMensual" class="form-control" />
@@ -28,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Agua" class="control-label"></label>
-                <input asp-for="Agua" class="form-control" value="" />
+                <input asp-for="Agua" class="form-control" />
                 <span asp-validation-for="Agua" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -37,84 +36,47 @@
                 <span asp-validation-for="Cable" class="text-danger"></span>
             </div>
             <div class="form-group">
-            <label asp-for="FechaActual" class="control-label"></label>
-            <input asp-for="FechaActual" class="form-control" />
-            <span asp-validation-for="FechaActual" class="text-danger"></span>
+                <label asp-for="FechaActual" class="control-label"></label>
+                <input asp-for="FechaActual" class="form-control" />
+                <span asp-validation-for="FechaActual" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
+            <div class="form-group">
                 <label asp-for="FechaVencimiento" class="control-label"></label>
                 <input asp-for="FechaVencimiento" class="form-control" />
                 <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
-            <label asp-for="PagoTotal" class="control-label"></label>
-            <input asp-for="PagoTotal" class="form-control">
-            <span asp-validation-for="PagoTotal" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
                 <label asp-for="LuzCuartoCodigoNavigation.ActualLuzLectura" class="control-label">Luz actual cuarto</label>
                 <input type="text" class="form-control" asp-for="LuzCuartoCodigoNavigation.ActualLuzLectura">
                 <span asp-validation-for="LuzCuartoCodigoNavigation.ActualLuzLectura" class="text-danger"></span>
             </div>
-           @* <div class="form-group">
-                <label asp-for="LuzCuartoCodigoNavigation.AnteriorLuzLectura" class="control-label">Luz anterior cuarto </label>
-                <input type="text" class="form-control" asp-for="LuzCuartoCodigoNavigation.AnteriorLuzLectura">
-                <span asp-validation-for="LuzCuartoCodigoNavigation.AnteriorLuzLectura" class="text-danger"></span>
-            </div>*@
-            @* <div class="form-group">
-            <label asp-for="LuzCuartoCodigoNavigation.KwConsumido" class="control-label"></label>
-
-            <input type="text" class="form-control" asp-for="LuzCuartoCodigoNavigation.KwConsumido">
-            <span asp-validation-for="LuzCuartoCodigoNavigation.KwConsumido" class="text-danger"></span>
-            </div>
             <div class="form-group">
-            <label asp-for="LuzCuartoCodigoNavigation.Monto" class="control-label"></label>
-
-            <input type="text" class="form-control" asp-for="LuzCuartoCodigoNavigation.Monto">
-            <span asp-validation-for="LuzCuartoCodigoNavigation.Monto" class="text-danger"></span>
-            </div>*@
+                <label asp-for="LuzCuartoCodigoNavigation.AnteriorLuzLectura" class="control-label">Luz anterior cuarto </label>
+                <input type="text" class="form-control" asp-for="LuzCuartoCodigoNavigation.AnteriorLuzLectura" readonly>
+                <span asp-validation-for="LuzCuartoCodigoNavigation.AnteriorLuzLectura" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="LuzBañoCodigoNavigation.ActualLuzLectura" class="control-label">Luz actual baño</label>
                 <input type="text" class="form-control" asp-for="LuzBañoCodigoNavigation.ActualLuzLectura">
                 <span asp-validation-for="LuzBañoCodigoNavigation.ActualLuzLectura" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="LuzBañoCodigoNavigation.AnteriorLuzLectura" class="control-label">Luz anterior baño</label>
-                <input type="text" class="form-control" asp-for="LuzBañoCodigoNavigation.AnteriorLuzLectura">
-                <span asp-validation-for="LuzBañoCodigoNavigation.AnteriorLuzLectura" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
-            <label asp-for="LuzBañoCodigoNavigation.KwConsumido" class="control-label"></label>
-            <input type="text" class="form-control" asp-for="LuzBañoCodigoNavigation.KwConsumido">
-            <span asp-validation-for="LuzBañoCodigoNavigation.KwConsumido" class="text-danger"></span>
-            </div>
             <div class="form-group">
-            <label asp-for="LuzBañoCodigoNavigation.Monto" class="control-label"></label>
-            <input type="text" class="form-control" asp-for="LuzBañoCodigoNavigation.Monto">
-            <span asp-validation-for="LuzBañoCodigoNavigation.Monto" class="text-danger"></span>
-            </div>*@
+                <label asp-for="LuzBañoCodigoNavigation.AnteriorLuzLectura" class="control-label">Luz anterior baño</label>
+                <input type="text" class="form-control" asp-for="LuzBañoCodigoNavigation.AnteriorLuzLectura" readonly>
+                <span asp-validation-for="LuzBañoCodigoNavigation.AnteriorLuzLectura" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="LuzEscaleraCodigoNavigation.ActualLuzLectura" class="control-label">Luz actual escalera</label>
                 <input type="text" class="form-control" asp-for="LuzEscaleraCodigoNavigation.ActualLuzLectura">
                 <span asp-validation-for="LuzEscaleraCodigoNavigation.ActualLuzLectura" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="LuzEscaleraCodigoNavigation.AnteriorLuzLectura" class="control-label">Luz anterior escalera</label>
-                <input type="text" class="form-control" asp-for="LuzEscaleraCodigoNavigation.AnteriorLuzLectura">
-                <span asp-validation-for="LuzEscaleraCodigoNavigation.AnteriorLuzLectura" class="text-danger"></span>
-            </div>*@
-            @* <div class="form-group">
-            <label asp-for="LuzEscaleraCodigoNavigation.KwConsumido" class="control-label"></label>
-
-            <input type="text" class="form-control" asp-for="LuzEscaleraCodigoNavigation.KwConsumido">
-            <span asp-validation-for="LuzEscaleraCodigoNavigation.KwConsumido" class="text-danger"></span>
-            </div>
             <div class="form-group">
-            <label asp-for="LuzEscaleraCodigoNavigation.Monto" class="control-label"></label>
-            <input type="text" class="form-control" asp-for="LuzEscaleraCodigoNavigation.Monto">
-            <span asp-validation-for="LuzEscaleraCodigoNavigation.Monto" class="text-danger"></span>
-            </div>*@
-            @*<div class="form-group">
+                <label asp-for="LuzEscaleraCodigoNavigation.AnteriorLuzLectura" class="control-label">Luz anterior escalera</label>
+                <input type="text" class="form-control" asp-for="LuzEscaleraCodigoNavigation.AnteriorLuzLectura" readonly>
+                <span asp-validation-for="LuzEscaleraCodigoNavigation.AnteriorLuzLectura" class="text-danger"></span>
+            </div>
+
+           @* <div class="form-group">
                 <label asp-for="CuartoCodigoNavigation.Piso" class="control-label"></label>
                 <input type="text" class="form-control" asp-for="CuartoCodigoNavigation.Piso">
                 <span asp-validation-for="CuartoCodigoNavigation.Piso" class="text-danger"></span>
@@ -122,6 +84,7 @@
             <div class="form-group">
                 <label asp-for="CuartoCodigoNavigation.Zona" class="control-label"></label>
                 <input type="text" class="form-control" asp-for="CuartoCodigoNavigation.Zona">
+
                 <span asp-validation-for="CuartoCodigoNavigation.Zona" class="text-danger"></span>
             </div>*@
             <div class="form-group">
@@ -134,6 +97,11 @@
                 <select asp-for="ArrendadorCodigo" class="form-control" asp-items="ViewBag.ArrendadorCodigo"></select>
                 <span asp-validation-for="ArrendadorCodigo" class="text-danger"></span>
             </div>
+            @*<div class="form-group">
+                <label asp-for="PagoTotal" class="control-label"></label>
+                <input asp-for="PagoTotal" class="form-control">
+                <span asp-validation-for="PagoTotal" class="text-danger"></span>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Crear" class="btn btn-primary" />
             </div>
@@ -144,45 +112,10 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-@*<script>
-    $(document).ready(function () {
-        $("#ArrendatarioCodigo").change(function () {
-            var selectedArrendatario = $(this).val();
-
-            // Realizar solicitud AJAX para obtener el último registro de luz del arrendatario
-            $.ajax({
-                url: "/Alquiler/ObtenerUltimoRegistroLuz",
-                type: "GET",
-                data: { arrendatarioCodigo: selectedArrendatario },
-                success: function (data) {
-                    // Actualizar los campos de luz anterior con los valores obtenidos
-                    $("#LuzCuartoCodigoNavigation_AnteriorLuzLectura").val(data.luzCuartoAnterior);
-                    $("#LuzBañoCodigoNavigation_AnteriorLuzLectura").val(data.luzBañoAnterior);
-                    $("#LuzEscaleraCodigoNavigation_AnteriorLuzLectura").val(data.luzEscaleraAnterior);
-                },
-                error: function (xhr, status, error) {
-                    // Manejar el error de la solicitud AJAX
-                    console.log(error);
-                }
-            });
-        });
-    });
-</script>*@
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    <script type="text/javascript">
-        function openSuccessModal(strMessage) {
-            var myDiv = document.getElementById("MyModalSuccessAlertBody");
-            myDiv.innerHTML = strMessage;
-            $('#myModalSuccess').modal('show');
-        }
-        $(document).ready(function () {
-            var msg = "@TempData["SuccessMessage"]";
-            if (msg)
-                openSuccessModal(msg);
-        });
-    </script>
 }
+

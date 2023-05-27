@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SisArrendamiento.Models.Alquiler>
+﻿@model IEnumerable<SisArrendamiento.Models.Arrendatario>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,22 +13,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.Nombres)
+                @Html.DisplayNameFor(model => model.Nombres)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.Apellidos)
+                @Html.DisplayNameFor(model => model.Apellidos)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.Telefono)
+                @Html.DisplayNameFor(model => model.Telefono)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.CedulaIdentidad)
+                @Html.DisplayNameFor(model => model.CedulaIdentidad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.FechaIngreso)
+                @Html.DisplayNameFor(model => model.FechaIngreso)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ArrendatarioCodigoNavigation.FechaNacimiento)
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
             </th>
             <th></th>
         </tr>
@@ -38,22 +38,22 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Nombres)
+                    @Html.DisplayFor(modelItem => item.Nombres)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Apellidos)
+                    @Html.DisplayFor(modelItem => item.Apellidos)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Telefono)
+                    @Html.DisplayFor(modelItem => item.Telefono)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.CedulaIdentidad)
+                    @Html.DisplayFor(modelItem => item.CedulaIdentidad)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.FechaIngreso)
+                    @Html.DisplayFor(modelItem => item.FechaIngreso)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.FechaNacimiento)
+                    @Html.DisplayFor(modelItem => item.FechaNacimiento)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Codigo">Edit</a> |

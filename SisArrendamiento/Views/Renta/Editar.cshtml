@@ -16,6 +16,7 @@
             <input type="hidden" asp-for="LuzCuartoCodigoNavigation.Codigo" />
             <input type="hidden" asp-for="LuzBañoCodigoNavigation.Codigo" />
             <input type="hidden" asp-for="LuzEscaleraCodigoNavigation.Codigo" />
+
             <div class="form-group">
                 <label asp-for="AlquilerMensual" class="control-label"></label>
                 <input asp-for="AlquilerMensual" class="form-control" />
@@ -31,22 +32,22 @@
                 <input asp-for="Cable" class="form-control" />
                 <span asp-validation-for="Cable" class="text-danger"></span>
             </div>
-    @*        <div class="form-group">
+            <div class="form-group">
                 <label asp-for="FechaActual" class="control-label"></label>
                 <input asp-for="FechaActual" class="form-control" />
                 <span asp-validation-for="FechaActual" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
                 <label asp-for="FechaVencimiento" class="control-label"></label>
                 <input asp-for="FechaVencimiento" class="form-control" />
                 <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
             </div>
-           @* <div class="form-group">
+           <div class="form-group">
                 <label asp-for="PagoTotal" class="control-label"></label>
                 
-                <input type="text" class="form-control" disabled asp-for="PagoTotal">
+                <input type="text" class="form-control" asp-for="PagoTotal">
                 <span asp-validation-for="PagoTotal" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
                 <label asp-for="LuzCuartoCodigoNavigation.ActualLuzLectura" class="control-label"></label>
                 

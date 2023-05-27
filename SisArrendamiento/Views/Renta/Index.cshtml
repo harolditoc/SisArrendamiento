@@ -1,5 +1,5 @@
-﻿@model IEnumerable<SisArrendamiento.Models.Alquiler>
-
+﻿@*@model IEnumerable<SisArrendamiento.Models.Alquiler>*@
+@model SisArrendamiento.Paginar.PaginatedList<SisArrendamiento.Models.Alquiler>
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,9 +9,37 @@
 <p>
     <a asp-action="Crear">Create New</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Buscar por nombre: <input type="text" name="busca" value="@ViewData["filtroBusqueda"]" />
+            <input type="submit" value="Busca" class="btn btn-primary" /> |
+            <a asp-action="Index">Regresar</a>
+        </p>
+    </div>
+</form>
+<form asp-action="Index" method="get">
+    <div>
+        <p>
+            <label for="fechaInicio">Fecha de inicio:</label>
+            <input type="date" id="fechaInicio" name="fechaInicio" value="@ViewData["fechaInicio"]" />
+
+            <label for="fechaFin">Fecha de Fin:</label>
+            <input type="date" id="fechaFin" name="fechaFin" value="@ViewData["fechaFin"]" /> |
+            <input type="submit" value="Filtrar" class="btn btn-primary" />
+        </p>
+    </div>
+</form>
+<p>Total pagos: @ViewData["totalPagos"]</p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                <a asp-action="Index" asp-route-ordenActual="@ViewData["filtroNombre"]"
+                   asp-route-filtroActual="@ViewData["filtroActual"]">
+                    Last Name
+                </a>
+            </th>
             <th>
                 <label>Arrendatario</label>
             </th>
@@ -21,6 +49,12 @@
             <th>
                 <label>Pago Total</label>
             </th>
+            <th>
+                <a asp-action="Index" asp-route-ordenActual="@ViewData["filtroFecha"]"
+                   asp-route-filtroActual="@ViewData["filtroActual"]">
+                    Fechaaaaa
+                </a>
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -28,6 +62,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Apellidos)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Apellidos), @Html.DisplayFor(modelItem => item.ArrendatarioCodigoNavigation.Nombres)
                 </td>
@@ -38,6 +75,10 @@
                     @Html.DisplayFor(modelItem => item.PagoTotal)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.FechaActual)
+                </td>
+                <td>
+                    <a asp-action="NewMes" asp-route-id="@item.Codigo">Nuevo Mes</a>
                     <a asp-action="Editar" asp-route-id="@item.Codigo"><img style="height: 40px; width: 40px" src="https://iconarchive.com/download/i42608/oxygen-icons.org/oxygen/Actions-document-edit.ico" /></a> |
                     <a asp-action="Detalles" asp-route-id="@item.Codigo"><img style="height= 40px; width: 40px;" src="https://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Adobe-PDF-Document-icon.png" /></a> |
                     <a asp-action="Eliminar" asp-route-id="@item.Codigo">Eliminar</a>
@@ -46,3 +87,31 @@
         }
     </tbody>
 </table>
+@{
+    var prevDis = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDis = !Model.HasNextPage ? "disabled" : "";
+}
+
+<div>
+    <a asp-action="Index"
+       asp-route-ordenActual="@ViewData["ordenActual"]"
+       asp-route-numPag="@(Model.PageIndex - 1)"
+       asp-route-filtroActual="@ViewData["filtroActual"]"
+       class="btn btn-primary @prevDis">
+        Previous
+    </a>
+    @for (var i = 1; i <= Model.TotalPage; i++)
+    {
+        var pagActiva = (i == Model.PageIndex) ? "active" : "";
+        <a asp-action="Index" asp-route-ordenActual="@ViewData["ordenActual"]"
+       asp-route-numPag="@i" asp-route-filtroActual="@ViewData["filtroActual"]"
+       class="btn btn-primary @pagActiva">@i</a>
+    }
+    <a asp-action="Index"
+       asp-route-ordenActual="@ViewData["ordenActual"]"
+       asp-route-numPag="@(Model.PageIndex + 1)"
+       asp-route-filtroActual="@ViewData["filtroActual"]"
+       class="btn btn-primary @nextDis">
+        Next
+    </a>
+</div>

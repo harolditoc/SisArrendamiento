@@ -1,4 +1,12 @@
 ﻿body {
+    font-family: Calibri;
+    /* margin: 2.5px 3px 2.5px 3px;  superior,derecha,inferior,izquierda*/
+    font-size: 20px;
+    text-transform: uppercase;
+    text-rendering: geometricPrecision;
+}
+p {
+   text-align:justify
 }
 
 
@@ -8,8 +16,8 @@
     margin-bottom: 10.0pt;
     margin-left: 0cm;
     line-height: 115%;
-    font-size: 16px;
-    font-family: "Calibri",sans-serif;
+    font-size: 19px;
+    font-family: "Arial",sans-serif;
     text-align: center;
 }
 
@@ -29,3 +37,25 @@
     line-height: 115%;
     font-family: "Arial",sans-serif;
 }
+
+.firma1{
+    max-width: 400px;
+    text-align: center;
+    position: absolute;
+    left: 16px;
+}
+.firma2{
+    max-width: 400px;
+    text-align: center;
+    position: absolute;
+    right: 16px;
+}
+
+.firma3 {
+
+    text-align: center;
+
+}
+
+
+

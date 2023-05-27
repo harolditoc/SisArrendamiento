@@ -35,13 +35,22 @@
                 <span>LUZ DE ESCALERA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;</span>
                 <span>@Html.DisplayFor(model => model.LuzEscaleraCodigoNavigation.Monto)</span>
             </li>
-            <li>
-                <span>
-                    LUZ DE BAÑO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    &nbsp; &nbsp;
-                </span>
-                <span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.Monto)</span>
-            </li>
+
+            @if (Model.LuzBañoCodigoNavigation.Monto == 0 || Model.LuzBañoCodigoNavigation.Monto == null)
+            {
+
+            }
+            else
+            {
+                <li>
+                    <span>
+                        LUZ DE BAÑO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp;
+                    </span>
+                    <span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.Monto)</span>
+                </li>
+            }
+
             <li>
                 <span>
                     AGUA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -72,7 +81,6 @@
         </strong>
         <p><strong>@Model.ArrendatarioCodigoNavigation.FechaIngreso.ToString("ddMMMyyyy")</strong></p>
         <p style="text-align: right;">Lima, @Model.FechaActual.ToString("dd DE MMMM DEL yyyy") &nbsp; &nbsp;</p>
-        <br />
         <br />
         <br />
         <p>
@@ -134,36 +142,41 @@
                 <span>&nbsp; &nbsp;/10 &nbsp; &nbsp; &nbsp; = &nbsp;S/</span><span>@Html.DisplayFor(model => model.LuzEscaleraCodigoNavigation.Monto)</span>
             </li>
         </ul>
-        <p>@ViewBag.numluz3</p>
-        <p>@TempData["hola"]</p>
-        <p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:14.2pt;font-family:"Calibri",sans-serif;'>
-            <strong>
-                <u>
-                    <span>LUZ DE BAÑO</span>
-                </u>
-            </strong>
-        </p>
-        <ul>
-            <li>
-                <span>LECTURA ANTERIOR DE LUZ : &nbsp;&nbsp;</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.AnteriorLuzLectura)</span>
-                <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; KW&nbsp;</span>
-            </li>
-            <li>
-                <span>LECTURA ACTUAL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp;</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.ActualLuzLectura)</span>
-                <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;KW</span>
-            </li>
-            <li>
-                <span>Kw CONSUMIDOS EN EL MES: &nbsp;&nbsp;</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.KwConsumido)</span>
-                <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;x 1.00 &nbsp; &nbsp;= S/</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.Monto)</span>
-            </li>
-        </ul>
-        <br />
-        <p>(+) Nota</p>
-        <ul>
-            <li>
-                PASANDO LA FECHA DE VENCIMIENTO DE LA RENTA, SE AUMENTARÁ A SU PAGO TOTAL UNA MORA DE
-                <strong>S/5</strong> POR DÍA. LA MORA ES APLICADA JUNTO A LAS CLÁUSULAS RESPECTIVAS, TAL CUAL ESTÁ ESCRITO EN EL CONTRATO.
-            </li>
-        </ul>
+        @if (Model.LuzBañoCodigoNavigation.Monto == 0 || Model.LuzBañoCodigoNavigation.Monto == null)
+        {
+
+        }
+        else
+        {
+            <p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:14.2pt;font-family:"Calibri",sans-serif;'>
+                <strong>
+                    <u>
+                        <span>LUZ DE BAÑO</span>
+                    </u>
+                </strong>
+            </p>
+            <ul>
+                <li>
+                    <span>LECTURA ANTERIOR DE LUZ : &nbsp;&nbsp;</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.AnteriorLuzLectura)</span>
+                    <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; KW&nbsp;</span>
+                </li>
+                <li>
+                    <span>LECTURA ACTUAL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: &nbsp;</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.ActualLuzLectura)</span>
+                    <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;KW</span>
+                </li>
+                <li>
+                    <span>Kw CONSUMIDOS EN EL MES: &nbsp;&nbsp;</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.KwConsumido)</span>
+                    <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;x 1.00 &nbsp; &nbsp;= S/</span><span>@Html.DisplayFor(model => model.LuzBañoCodigoNavigation.Monto)</span>
+                </li>
+            </ul>     
+        }
+         <br />
+            <p>(+) Nota</p>
+            <ul>
+                <li>
+                    PASANDO LA FECHA DE VENCIMIENTO DE LA RENTA, SE AUMENTARÁ A SU PAGO TOTAL UNA MORA DE
+                    <strong>S/5</strong> POR DÍA. LA MORA ES APLICADA JUNTO A LAS CLÁUSULAS RESPECTIVAS, TAL CUAL ESTÁ ESCRITO EN EL CONTRATO.
+                </li>
+            </ul>
     </div>
 </body>
