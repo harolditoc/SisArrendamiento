@@ -89,17 +89,20 @@ public partial class ArrendamientoWebContext : DbContext
 
             entity.HasOne(d => d.LuzBañoCodigoNavigation).WithMany(p => p.Alquilers)
                 .HasForeignKey(d => d.LuzBañoCodigo)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                //.OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("alquiler_luz_baño_FK");
 
             entity.HasOne(d => d.LuzCuartoCodigoNavigation).WithMany(p => p.Alquilers)
                 .HasForeignKey(d => d.LuzCuartoCodigo)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                //.OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("alquiler_luz_cuarto_FK");
 
             entity.HasOne(d => d.LuzEscaleraCodigoNavigation).WithMany(p => p.Alquilers)
                 .HasForeignKey(d => d.LuzEscaleraCodigo)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                //.OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("alquiler_luz_escalera_FK");
         });
 
@@ -216,6 +219,8 @@ public partial class ArrendamientoWebContext : DbContext
 
             entity.ToTable("luz_baño");
 
+            //entity.HasMany(c => c.Alquilers).WithOne(d => d.LuzBañoCodigoNavigation).OnDelete(DeleteBehavior.Cascade);
+
             entity.Property(e => e.Codigo)
                 .HasColumnName("codigo")
                 .UseIdentityColumn(1, 1);
@@ -239,6 +244,8 @@ public partial class ArrendamientoWebContext : DbContext
 
             entity.ToTable("luz_cuarto");
 
+            //entity.HasMany(c => c.Alquilers).WithOne(d => d.LuzCuartoCodigoNavigation).OnDelete(DeleteBehavior.Cascade);
+
             entity.Property(e => e.Codigo)
                 .HasColumnName("codigo")
                 .UseIdentityColumn(1, 1);
@@ -261,6 +268,8 @@ public partial class ArrendamientoWebContext : DbContext
             entity.HasKey(e => e.Codigo).HasName("luz_escalera_PK");
 
             entity.ToTable("luz_escalera");
+
+            //entity.HasMany(c => c.Alquilers).WithOne(d => d.LuzEscaleraCodigoNavigation).OnDelete(DeleteBehavior.Cascade);
 
             entity.Property(e => e.Codigo)
                 .HasColumnName("codigo")

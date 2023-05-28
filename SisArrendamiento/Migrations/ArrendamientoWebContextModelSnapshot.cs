@@ -365,18 +365,21 @@ namespace SisArrendamiento.Migrations
                     b.HasOne("SisArrendamiento.Models.LuzBaño", "LuzBañoCodigoNavigation")
                         .WithMany("Alquilers")
                         .HasForeignKey("LuzBañoCodigo")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("alquiler_luz_baño_FK");
 
                     b.HasOne("SisArrendamiento.Models.LuzCuarto", "LuzCuartoCodigoNavigation")
                         .WithMany("Alquilers")
                         .HasForeignKey("LuzCuartoCodigo")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("alquiler_luz_cuarto_FK");
 
                     b.HasOne("SisArrendamiento.Models.LuzEscalera", "LuzEscaleraCodigoNavigation")
                         .WithMany("Alquilers")
                         .HasForeignKey("LuzEscaleraCodigo")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("alquiler_luz_escalera_FK");
 

@@ -12,8 +12,8 @@ using SisArrendamiento.Models;
 namespace SisArrendamiento.Migrations
 {
     [DbContext(typeof(ArrendamientoWebContext))]
-    [Migration("20230524092916_Arrendamiento2")]
-    partial class Arrendamiento2
+    [Migration("20230527185842_cascade")]
+    partial class cascade
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -368,18 +368,21 @@ namespace SisArrendamiento.Migrations
                     b.HasOne("SisArrendamiento.Models.LuzBaño", "LuzBañoCodigoNavigation")
                         .WithMany("Alquilers")
                         .HasForeignKey("LuzBañoCodigo")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("alquiler_luz_baño_FK");
 
                     b.HasOne("SisArrendamiento.Models.LuzCuarto", "LuzCuartoCodigoNavigation")
                         .WithMany("Alquilers")
                         .HasForeignKey("LuzCuartoCodigo")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("alquiler_luz_cuarto_FK");
 
                     b.HasOne("SisArrendamiento.Models.LuzEscalera", "LuzEscaleraCodigoNavigation")
                         .WithMany("Alquilers")
                         .HasForeignKey("LuzEscaleraCodigo")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("alquiler_luz_escalera_FK");
 

@@ -309,7 +309,7 @@ namespace SisArrendamiento.Controllers
             //        alquiler.LuzEscaleraCodigoNavigation.Monto.Value +
             //        alquiler.LuzBañoCodigoNavigation.Monto.Value +
             //        alquiler.Agua.Value + alquiler.Cable.Value), 1);
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _context.Add(alquiler);
                 await _context.SaveChangesAsync();
@@ -326,20 +326,21 @@ namespace SisArrendamiento.Controllers
         [HttpGet]
         public IActionResult Eliminar(int? id)
         {
-            var alquiler = _context.Alquilers
+            var alquiler = _context.Alquilers           
                 .FirstOrDefault(c => c.Codigo == id);
 
-            //var luzBaño = _context.LuzBaños
-            //    .FirstOrDefault(c => c.Codigo == id);
+            var luzBaño = _context.LuzBaños
+                .FirstOrDefault(c => c.Codigo == id);
 
-            //var luzEscalera = _context.LuzEscaleras
-            //    .FirstOrDefault(c => c.Codigo == id);
+            var luzEscalera = _context.LuzEscaleras
+                .FirstOrDefault(c => c.Codigo == id);
 
-            //var luzCuarto = _context.LuzCuartos
-            //    .FirstOrDefault(c => c.Codigo == id);
-            //_context.LuzBaños.Remove(luzBaño);
-            //_context.LuzEscaleras.Remove(luzEscalera);
-            //_context.LuzCuartos.Remove(luzCuarto);
+            var luzCuarto = _context.LuzCuartos
+                .FirstOrDefault(c => c.Codigo == id);
+
+            _context.LuzBaños.Remove(luzBaño);
+            _context.LuzEscaleras.Remove(luzEscalera);
+            _context.LuzCuartos.Remove(luzCuarto);
             _context.Alquilers.Remove(alquiler);
 
             _context.SaveChanges();

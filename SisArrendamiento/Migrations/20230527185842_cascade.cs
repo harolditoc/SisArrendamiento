@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SisArrendamiento.Migrations
 {
     /// <inheritdoc />
-    public partial class CambiarCampoAIdentity11 : Migration
+    public partial class cascade : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -169,17 +169,20 @@ namespace SisArrendamiento.Migrations
                         name: "alquiler_luz_baño_FK",
                         column: x => x.luzbañocodigo,
                         principalTable: "luz_baño",
-                        principalColumn: "codigo");
+                        principalColumn: "codigo",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "alquiler_luz_cuarto_FK",
                         column: x => x.luzcuartocodigo,
                         principalTable: "luz_cuarto",
-                        principalColumn: "codigo");
+                        principalColumn: "codigo",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "alquiler_luz_escalera_FK",
                         column: x => x.luzescaleracodigo,
                         principalTable: "luz_escalera",
-                        principalColumn: "codigo");
+                        principalColumn: "codigo",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
