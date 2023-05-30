@@ -21,10 +21,7 @@ namespace SisArrendamiento.Controllers
 
         // GET: Arrendatario
         public async Task<IActionResult> Index()
-        {
-            //var arrendamientoWebContext = _context.Alquilers.Include(a => a.ArrendadorCodigoNavigation).Include(a => a.ArrendatarioCodigoNavigation).Include(a => a.CuartoCodigoNavigation).
-            //    Include(a => a.LuzBañoCodigoNavigation).Include(a => a.LuzCuartoCodigoNavigation).Include(a => a.LuzEscaleraCodigoNavigation);
-            //var arrendamientoWebContext = _context.Arrendatarios.Include(a => a.Alquilers).Include(a => a.Alquilers);
+        {     
             var arrendamientoWebContext = _context.Arrendatarios
         .Include(a => a.Alquilers).ThenInclude(a => a.CuartoCodigoNavigation)
         .Include(a => a.Alquilers).ThenInclude(a => a.LuzBañoCodigoNavigation)
@@ -55,6 +52,16 @@ namespace SisArrendamiento.Controllers
         // GET: Arrendatario/Create
         public IActionResult Create()
         {
+            ViewData["ArrendadorCodigo"] = _context.Arrendadors.OrderByDescending(c => c.Codigo).Select(p => new SelectListItem
+            {
+                Value = p.Codigo.ToString(),
+                Text = string.Format("{0} {1}", p.Nombres, p.Apellidos)
+            });
+            ViewData["CuartoCodigo"] = _context.Cuartos.OrderByDescending(c => c.Codigo).Select(p => new SelectListItem
+            {
+                Value = p.Codigo.ToString(),
+                Text = string.Format("{0} {1}", p.Piso, p.Zona)
+            });
             return View();
         }
 
@@ -63,17 +70,41 @@ namespace SisArrendamiento.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Codigo,Nombres,Apellidos,Telefono,CedulaIdentidad,FechaIngreso,FechaNacimiento")] Arrendatario arrendatario)
+        //public async Task<IActionResult> Create([Bind("Codigo,Nombres,Apellidos,Telefono,CedulaIdentidad,FechaIngreso,FechaNacimiento")] Arrendatario arrendatario)
+        //{
+        //    TempData["SuccessMessage"] = "Arrendatario " + arrendatario.Apellidos + " Guardado satisfactoriamente. Para culminar con el contrato, digite los precios para el cuarto";
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(arrendatario);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction("Crear", "Renta");
+        //        //return RedirectToAction("Details", new {id=arrendatario.Codigo}); //Si deseas redireccionar al detalle directamente despues de crear.
+        //    }
+        //    return View(arrendatario);
+        //}
+        public async Task<IActionResult> Create(Alquiler alquiler)
         {
-            TempData["SuccessMessage"] = "Arrendatario " + arrendatario.Apellidos + " Guardado satisfactoriamente. Para culminar con el contrato, digite los precios para el cuarto";
-            if (ModelState.IsValid)
+            //alquiler = null;
+            //alquiler.AlquilerMensual = null;
+            //alquiler.Agua = null;
+            //alquiler.Cable = null;
+            //alquiler.FechaActual = DateTime.Now;
+            //alquiler.FechaVencimiento = DateTime.Now;
+            //alquiler.LuzBañoCodigoNavigation = null;
+            //alquiler.LuzEscaleraCodigoNavigation = null;
+            //alquiler.LuzCuartoCodigoNavigation = null;
+            //alquiler.CuartoCodigoNavigation = null;
+            //alquiler.ArrendadorCodigoNavigation = null;
+            if(!ModelState.IsValid)
             {
-                _context.Add(arrendatario);
+                _context.Add(alquiler);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Crear", "Renta");
-                //return RedirectToAction("Details", new {id=arrendatario.Codigo}); //Si deseas redireccionar al detalle directamente despues de crear.
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("CompletaContrato", "Renta", new { id = alquiler.Codigo });
             }
-            return View(arrendatario);
+            ViewData["CuartoCodigo"] = new SelectList(_context.Cuartos, "Codigo", "Codigo", alquiler.CuartoCodigo);
+            ViewData["ArrendadorCodigo"] = new SelectList(_context.Arrendadors, "Codigo", "Codigo", alquiler.ArrendadorCodigo);
+            return View(alquiler);
         }
 
         // GET: Arrendatario/Edit/5
@@ -159,26 +190,18 @@ namespace SisArrendamiento.Controllers
             {
                 _context.Arrendatarios.Remove(arrendatario);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ArrendatarioExists(int id)
         {
-          return _context.Arrendatarios.Any(e => e.Codigo == id);
+            return _context.Arrendatarios.Any(e => e.Codigo == id);
         }
         [HttpGet]
         public IActionResult ContratoPdf(int? id)
         {
-            //var alquiler = _context.Alquilers
-            //    .Include(a => a.ArrendadorCodigoNavigation) 
-            //    .Include(a => a.CuartoCodigoNavigation)
-            //    .Include(a => a.LuzBañoCodigoNavigation)
-            //    .Include(a => a.LuzCuartoCodigoNavigation)
-            //    .Include(a => a.LuzEscaleraCodigoNavigation)
-            //    .Include(a => a.ArrendatarioCodigoNavigation).ThenInclude(a => a.Convivientes)
-            //    .FirstOrDefault(m => m.Codigo == id);
             var arrendatario = _context.Arrendatarios
         .Include(a => a.Alquilers).ThenInclude(a => a.CuartoCodigoNavigation)
         .Include(a => a.Alquilers).ThenInclude(a => a.LuzBañoCodigoNavigation)
@@ -201,39 +224,5 @@ namespace SisArrendamiento.Controllers
                 }
             };
         }
-        //[HttpGet]
-        //public IActionResult ContratoPdf(int? id)
-        //{
-        //    if (id == null || _context.Alquilers == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var alquiler = _context.Alquilers
-        //        .Include(a => a.ArrendadorCodigoNavigation)
-        //        .Include(a => a.ArrendatarioCodigoNavigation)
-        //        .Include(a => a.CuartoCodigoNavigation)
-        //        .Include(a => a.LuzBañoCodigoNavigation)
-        //        .Include(a => a.LuzCuartoCodigoNavigation)
-        //        .Include(a => a.LuzEscaleraCodigoNavigation)
-        //        .FirstOrDefault(m => m.Codigo == id);
-        //    var arrendatario = _context.Arrendatarios.FirstOrDefault(a => a.Codigo == id);
-        //    //var convivientes = _context.Convivientes.FirstOrDefault(c => c.Codigo == id);
-        //    var convivientes = _context.Convivientes.Where(c => c.ArrendatarioCodigo == arrendatario.Codigo).ToList();
-        //    var model = new AlquilerVM
-        //    {
-        //        Alquiler = alquiler,
-        //        Arrendatario = arrendatario,
-        //        //Convivientes = new List<Conviviente> { convivientes }
-        //        Convivientes = convivientes
-        //    };
-            
-        //    if (alquiler == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewBag.pdf = true;
-        //    return View(model);
-
-        //}
     }
 }

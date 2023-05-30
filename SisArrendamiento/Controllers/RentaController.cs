@@ -164,6 +164,66 @@ namespace SisArrendamiento.Controllers
             //ViewData["LuzEscaleraCodigo"] = new SelectList(_context.LuzEscaleras, "Codigo", "Codigo", alquiler.LuzEscaleraCodigo);
             return View(alquiler);
         }
+        [HttpGet]
+        public async Task<IActionResult> CompletaContrato(int? id)
+        {
+            if (id == null)
+            {
+                return View();
+            }
+            var alquiler = _context.Alquilers.Include(lc => lc.LuzCuartoCodigoNavigation).Include(lb => lb.LuzBañoCodigoNavigation).Include(le => le.LuzEscaleraCodigoNavigation).
+                FirstOrDefault(c => c.Codigo == id);
+            //Arrendatario ar = new Arrendatario();
+            //ViewData["Nombres"] = string.Format("{0} {1}", ar.Nombres, ar.Apellidos);
+            ViewData["ArrendadorCodigo"] = new SelectList(_context.Arrendadors, "Codigo", "Codigo");
+            //ViewData["ArrendatarioCodigo"] = new SelectList(_context.Arrendatarios.OrderByDescending(c => c.Codigo), "Codigo", "Nombres");
+            //ViewData["ArrendatarioCodigo"] = _context.Arrendatarios.OrderByDescending(c => c.Codigo).Select(p => new SelectListItem
+            //{
+            //    Value = p.Codigo.ToString(),
+            //    Text = string.Format("{0} {1}", p.Nombres, p.Apellidos)
+            //});
+            ViewData["ArrendatarioCodigo"] = new SelectList(_context.Arrendatarios, "Codigo", "Nombres", alquiler.ArrendatarioCodigo);
+
+            ViewData["CuartoCodigo"] = _context.Cuartos.OrderByDescending(c => c.Codigo).Select(p => new SelectListItem
+            {
+                Value = p.Codigo.ToString(),
+                Text = string.Format("{0} {1}", p.Piso, p.Zona)
+            });
+            //ViewData["LuzBañoCodigo"] = new SelectList(_context.LuzBaños, "Codigo", "Codigo");
+            //ViewData["LuzCuartoCodigo"] = new SelectList(_context.LuzCuartos, "Codigo", "Codigo");
+            //ViewData["LuzEscaleraCodigo"] = new SelectList(_context.LuzEscaleras, "Codigo", "Codigo");
+            return View(alquiler);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CompletaContrato(Alquiler alquiler)
+        {
+            decimal numluz = 1;
+            decimal arrendatarios = 10;
+
+            string fa1 = Convert.ToString(alquiler.FechaVencimiento);
+            DateTime fa = DateTime.Parse(fa1);
+            alquiler.FechaActual = DateTime.Now;
+            alquiler.FechaVencimiento = alquiler.FechaActual.AddDays(2);
+            alquiler.LuzCuartoCodigoNavigation.AnteriorLuzLectura = null;
+            alquiler.LuzBañoCodigoNavigation.AnteriorLuzLectura = null;
+            alquiler.LuzEscaleraCodigoNavigation.AnteriorLuzLectura = null;
+            alquiler.PagoTotal = alquiler.AlquilerMensual;
+
+            if (ModelState.IsValid)
+            {
+                _context.Alquilers.Update(alquiler);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["ArrendadorCodigo"] = new SelectList(_context.Arrendadors, "Codigo", "Codigo", alquiler.ArrendadorCodigo);
+            ViewData["ArrendatarioCodigo"] = new SelectList(_context.Arrendatarios, "Codigo", "Codigo", alquiler.ArrendatarioCodigo);
+
+            ViewData["CuartoCodigo"] = new SelectList(_context.Cuartos, "Codigo", "Codigo", alquiler.CuartoCodigo);
+            //ViewData["LuzBañoCodigo"] = new SelectList(_context.LuzBaños, "Codigo", "Codigo", alquiler.LuzBañoCodigo);
+            //ViewData["LuzCuartoCodigo"] = new SelectList(_context.LuzCuartos, "Codigo", "Codigo", alquiler.LuzCuartoCodigo);
+            //ViewData["LuzEscaleraCodigo"] = new SelectList(_context.LuzEscaleras, "Codigo", "Codigo", alquiler.LuzEscaleraCodigo);
+            return View(alquiler);
+        }
         public async Task<IActionResult> ObtenerUltimoRegistro(int id)
         {
             // Obtener el último registro de luz del arrendatario

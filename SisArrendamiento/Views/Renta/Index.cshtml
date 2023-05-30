@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<SisArrendamiento.Models.Alquiler>*@
-@model SisArrendamiento.Paginar.PaginatedList<SisArrendamiento.Models.Alquiler>
+﻿@model SisArrendamiento.Paginar.PaginatedList<SisArrendamiento.Models.Alquiler>
 @{
     ViewData["Title"] = "Index";
 }
@@ -80,7 +79,16 @@
                     <a asp-action="NewMes" asp-route-id="@item.Codigo">Nuevo Mes</a> |
                     @*<a asp-action="Editar" asp-route-id="@item.Codigo"><img style="height: 40px; width: 40px" src="https://iconarchive.com/download/i42608/oxygen-icons.org/oxygen/Actions-document-edit.ico" /></a> |
                 <a asp-action="Detalles" asp-route-id="@item.Codigo"><img style="height= 40px; width: 40px;" src="https://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Adobe-PDF-Document-icon.png" /></a> |*@
-                    <a asp-action="Editar" asp-route-id="@item.Codigo">Editar</a> |
+                    @{
+                        if(item.PagoTotal == null)
+                        {
+                            <a asp-action="CompletaContrato" asp-route-id="@item.Codigo">Completar</a>
+                        }
+                        else
+                        {
+                            <a asp-action="Editar" asp-route-id="@item.Codigo">Editar</a>
+                        }
+                    } |
                     <a asp-action="Detalles" asp-route-id="@item.Codigo">Imprimir</a> |
                     <a asp-action="Eliminar" asp-route-id="@item.Codigo">Eliminar</a>
                 </td>

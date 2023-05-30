@@ -1,0 +1,79 @@
+﻿@model SisArrendamiento.Models.Alquiler
+
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<h1>Completa Contrato</h1>
+
+<h4>Alquiler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CompletaContrato">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Codigo" />
+            <input type="hidden" asp-for="LuzCuartoCodigoNavigation.Codigo" />
+            <input type="hidden" asp-for="LuzBañoCodigoNavigation.Codigo" />
+            <input type="hidden" asp-for="LuzEscaleraCodigoNavigation.Codigo" />
+
+            <div class="form-group">
+                <label asp-for="AlquilerMensual" class="control-label"></label>
+                <input asp-for="AlquilerMensual" class="form-control" />
+                <span asp-validation-for="AlquilerMensual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Agua" class="control-label"></label>
+                <input asp-for="Agua" class="form-control" value="" />
+                <span asp-validation-for="Agua" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cable" class="control-label"></label>
+                <input asp-for="Cable" class="form-control" />
+                <span asp-validation-for="Cable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaActual" class="control-label"></label>
+                <input asp-for="FechaActual" class="form-control" />
+                <span asp-validation-for="FechaActual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzCuartoCodigoNavigation.ActualLuzLectura" class="control-label">Luz actual cuarto</label>
+                <input type="text" class="form-control" asp-for="LuzCuartoCodigoNavigation.ActualLuzLectura">
+                <span asp-validation-for="LuzCuartoCodigoNavigation.ActualLuzLectura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzBañoCodigoNavigation.ActualLuzLectura" class="control-label">Luz actual baño</label>
+                <input type="text" class="form-control" asp-for="LuzBañoCodigoNavigation.ActualLuzLectura">
+                <span asp-validation-for="LuzBañoCodigoNavigation.ActualLuzLectura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuzEscaleraCodigoNavigation.ActualLuzLectura" class="control-label">Luz actual escalera</label>
+                <input type="text" class="form-control" asp-for="LuzEscaleraCodigoNavigation.ActualLuzLectura">
+                <span asp-validation-for="LuzEscaleraCodigoNavigation.ActualLuzLectura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CuartoCodigo" class="control-label"></label>
+                <select asp-for="CuartoCodigo" class="form-control" asp-items="ViewBag.CuartoCodigo"></select>
+                <span asp-validation-for="CuartoCodigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArrendatarioCodigo" class="control-label"></label>
+                <select asp-for="ArrendatarioCodigo" class="form-control" asp-items="ViewBag.ArrendatarioCodigo"></select>
+                <span asp-validation-for="ArrendatarioCodigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArrendadorCodigo" class="control-label"></label>
+                <select asp-for="ArrendadorCodigo" class="form-control" asp-items="ViewBag.ArrendadorCodigo"></select>
+                <span asp-validation-for="ArrendadorCodigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

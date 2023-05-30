@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Contratos</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -57,7 +57,18 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Codigo">Edit</a> |
-                    <a asp-action="ContratoPdf" asp-route-id="@item.Codigo"><img style="height= 40px; width: 40px;" src="https://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Adobe-PDF-Document-icon.png" /></a> |
+                    @*<a asp-action="ContratoPdf" asp-route-id="@item.Codigo"><img style="height= 40px; width: 40px;" src="https://icons.iconarchive.com/icons/hopstarter/soft-scraps/256/Adobe-PDF-Document-icon.png" /></a> |*@
+                    @{
+                        if (item.Alquilers == null || !item.Alquilers.Any() || item.Alquilers.Any(a => a.Agua == null))
+                        {
+                            <a asp-controller="Renta" asp-action="CompletaContrato" asp-route-id="@item.Alquilers.FirstOrDefault()?.Codigo">Completa</a>
+                        }
+                        else
+                        {
+                            <a asp-action="ContratoPdf" asp-route-id="@item.Codigo">Imprimir</a>
+                        }
+                    }|
+                    
                     <a asp-action="Delete" asp-route-id="@item.Codigo">Delete</a>
                 </td>
             </tr>

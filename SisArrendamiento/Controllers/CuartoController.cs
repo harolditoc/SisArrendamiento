@@ -9,87 +9,85 @@ using SisArrendamiento.Models;
 
 namespace SisArrendamiento.Controllers
 {
-    public class LuzBañoController : Controller
+    public class CuartoController : Controller
     {
         private readonly ArrendamientoWebContext _context;
 
-        public LuzBañoController(ArrendamientoWebContext context)
+        public CuartoController(ArrendamientoWebContext context)
         {
             _context = context;
         }
 
-        // GET: LuzBaño
+        // GET: Cuarto
         public async Task<IActionResult> Index()
         {
-              return _context.LuzBaños != null ? 
-                          View(await _context.LuzBaños.ToListAsync()) :
-                          Problem("Entity set 'ArrendamientoWebContext.LuzBaños'  is null.");
+              return View(await _context.Cuartos.ToListAsync());
         }
 
-        // GET: LuzBaño/Details/5
+        // GET: Cuarto/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.LuzBaños == null)
+            if (id == null || _context.Cuartos == null)
             {
                 return NotFound();
             }
 
-            var luzBaño = await _context.LuzBaños
+            var cuarto = await _context.Cuartos
                 .FirstOrDefaultAsync(m => m.Codigo == id);
-            if (luzBaño == null)
+            if (cuarto == null)
             {
                 return NotFound();
             }
 
-            return View(luzBaño);
+            return View(cuarto);
         }
 
-        // GET: LuzBaño/Create
+        // GET: Cuarto/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: LuzBaño/Create
+        // POST: Cuarto/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Codigo,AnteriorLuzLectura,ActualLuzLectura,KwConsumido,Monto")] LuzBaño luzBaño)
+        public async Task<IActionResult> Create([Bind("Codigo,Piso,Zona")] Cuarto cuarto)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(luzBaño);
+                _context.Add(cuarto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(luzBaño);
+            return View(cuarto);
         }
 
-        // GET: LuzBaño/Edit/5
+        // GET: Cuarto/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.LuzBaños == null)
+            if (id == null || _context.Cuartos == null)
             {
                 return NotFound();
             }
 
-            var luzBaño = await _context.LuzBaños.FindAsync(id);
-            if (luzBaño == null)
+            var cuarto = await _context.Cuartos.FindAsync(id);
+            if (cuarto == null)
             {
                 return NotFound();
             }
-            return View(luzBaño);
+            return View(cuarto);
         }
 
-        // POST: LuzBaño/Edit/5
+        // POST: Cuarto/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Codigo,AnteriorLuzLectura,ActualLuzLectura,KwConsumido,Monto")] LuzBaño luzBaño)
+        public async Task<IActionResult> Edit(int id, [Bind("Codigo,Piso,Zona")] Cuarto cuarto)
         {
-            if (id != luzBaño.Codigo)
+            if (id != cuarto.Codigo)
             {
                 return NotFound();
             }
@@ -98,12 +96,12 @@ namespace SisArrendamiento.Controllers
             {
                 try
                 {
-                    _context.Update(luzBaño);
+                    _context.Update(cuarto);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LuzBañoExists(luzBaño.Codigo))
+                    if (!CuartoExists(cuarto.Codigo))
                     {
                         return NotFound();
                     }
@@ -114,49 +112,49 @@ namespace SisArrendamiento.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(luzBaño);
+            return View(cuarto);
         }
 
-        // GET: LuzBaño/Delete/5
+        // GET: Cuarto/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.LuzBaños == null)
+            if (id == null || _context.Cuartos == null)
             {
                 return NotFound();
             }
 
-            var luzBaño = await _context.LuzBaños
+            var cuarto = await _context.Cuartos
                 .FirstOrDefaultAsync(m => m.Codigo == id);
-            if (luzBaño == null)
+            if (cuarto == null)
             {
                 return NotFound();
             }
 
-            return View(luzBaño);
+            return View(cuarto);
         }
 
-        // POST: LuzBaño/Delete/5
+        // POST: Cuarto/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.LuzBaños == null)
+            if (_context.Cuartos == null)
             {
-                return Problem("Entity set 'ArrendamientoWebContext.LuzBaños'  is null.");
+                return Problem("Entity set 'ArrendamientoWebContext.Cuartos'  is null.");
             }
-            var luzBaño = await _context.LuzBaños.FindAsync(id);
-            if (luzBaño != null)
+            var cuarto = await _context.Cuartos.FindAsync(id);
+            if (cuarto != null)
             {
-                _context.LuzBaños.Remove(luzBaño);
+                _context.Cuartos.Remove(cuarto);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LuzBañoExists(int id)
+        private bool CuartoExists(int id)
         {
-          return (_context.LuzBaños?.Any(e => e.Codigo == id)).GetValueOrDefault();
+          return _context.Cuartos.Any(e => e.Codigo == id);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model SisArrendamiento.Models.Arrendatario
+﻿@model SisArrendamiento.Models.Alquiler
 
 @{
     ViewData["Title"] = "Create";
@@ -12,35 +12,51 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<input type="hidden" asp-for="Codigo" />*@
+            @*<input type="hidden" asp-for="ArrendadorCodigoNavigation.Codigo" />*@
+            @*<input type="hidden" asp-for="CuartoCodigoNavigation.Codigo" />*@
+            <input type="hidden" asp-for="LuzBañoCodigoNavigation.Codigo" />
+            <input type="hidden" asp-for="LuzCuartoCodigoNavigation.Codigo" />
+            <input type="hidden" asp-for="LuzEscaleraCodigoNavigation.Codigo" />
             <div class="form-group">
-                <label asp-for="Nombres" class="control-label"></label>
-                <input asp-for="Nombres" class="form-control" />
-                <span asp-validation-for="Nombres" class="text-danger"></span>
+                <label asp-for="ArrendatarioCodigoNavigation.Nombres" class="control-label"></label>
+                <input asp-for="ArrendatarioCodigoNavigation.Nombres" class="form-control" />
+                <span asp-validation-for="ArrendatarioCodigoNavigation.Nombres" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Apellidos" class="control-label"></label>
-                <input asp-for="Apellidos" class="form-control" />
-                <span asp-validation-for="Apellidos" class="text-danger"></span>
+                <label asp-for="ArrendatarioCodigoNavigation.Apellidos" class="control-label"></label>
+                <input asp-for="ArrendatarioCodigoNavigation.Apellidos" class="form-control" />
+                <span asp-validation-for="ArrendatarioCodigoNavigation.Apellidos" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
+                <label asp-for="ArrendatarioCodigoNavigation.Telefono" class="control-label"></label>
+                <input asp-for="ArrendatarioCodigoNavigation.Telefono" class="form-control" />
+                <span asp-validation-for="ArrendatarioCodigoNavigation.Telefono" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CedulaIdentidad" class="control-label"></label>
-                <input asp-for="CedulaIdentidad" class="form-control" />
-                <span asp-validation-for="CedulaIdentidad" class="text-danger"></span>
+                <label asp-for="ArrendatarioCodigoNavigation.CedulaIdentidad" class="control-label"></label>
+                <input asp-for="ArrendatarioCodigoNavigation.CedulaIdentidad" class="form-control" />
+                <span asp-validation-for="ArrendatarioCodigoNavigation.CedulaIdentidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaIngreso" class="control-label"></label>
-                <input asp-for="FechaIngreso" class="form-control" />
-                <span asp-validation-for="FechaIngreso" class="text-danger"></span>
+                <label asp-for="ArrendatarioCodigoNavigation.FechaIngreso" class="control-label"></label>
+                <input asp-for="ArrendatarioCodigoNavigation.FechaIngreso" class="form-control" />
+                <span asp-validation-for="ArrendatarioCodigoNavigation.FechaIngreso" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaNacimiento" class="control-label"></label>
-                <input asp-for="FechaNacimiento" class="form-control" />
-                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                <label asp-for="ArrendatarioCodigoNavigation.FechaNacimiento" class="control-label"></label>
+                <input asp-for="ArrendatarioCodigoNavigation.FechaNacimiento" class="form-control" />
+                <span asp-validation-for="ArrendatarioCodigoNavigation.FechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CuartoCodigo" class="control-label"></label>
+                <select asp-for="CuartoCodigo" class="form-control" asp-items="ViewBag.CuartoCodigo"></select>
+                <span asp-validation-for="CuartoCodigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArrendadorCodigo" class="control-label"></label>
+                <select asp-for="ArrendadorCodigo" class="form-control" asp-items="ViewBag.ArrendadorCodigo"></select>
+                <span asp-validation-for="ArrendadorCodigo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

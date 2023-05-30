@@ -144,30 +144,6 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-@*<script>
-    $(document).ready(function () {
-        $("#ArrendatarioCodigo").change(function () {
-            var selectedArrendatario = $(this).val();
-
-            // Realizar solicitud AJAX para obtener el último registro de luz del arrendatario
-            $.ajax({
-                url: "/Alquiler/ObtenerUltimoRegistroLuz",
-                type: "GET",
-                data: { arrendatarioCodigo: selectedArrendatario },
-                success: function (data) {
-                    // Actualizar los campos de luz anterior con los valores obtenidos
-                    $("#LuzCuartoCodigoNavigation_AnteriorLuzLectura").val(data.luzCuartoAnterior);
-                    $("#LuzBañoCodigoNavigation_AnteriorLuzLectura").val(data.luzBañoAnterior);
-                    $("#LuzEscaleraCodigoNavigation_AnteriorLuzLectura").val(data.luzEscaleraAnterior);
-                },
-                error: function (xhr, status, error) {
-                    // Manejar el error de la solicitud AJAX
-                    console.log(error);
-                }
-            });
-        });
-    });
-</script>*@
 
 @section Scripts {
     @{
